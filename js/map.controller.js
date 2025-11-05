@@ -58,6 +58,37 @@ function onRemovePlace(placeId) {
 
 }
 
+function onGetUserLocation() {
+    console.log('Requesting user location...')
+    if (!gMap) {
+        alert('Map is not ready yet, please wait a moment.')
+        return
+    }
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(
+
+            (position) => {
+                console.log('User approved location', position)
+                const { latitude, longitude } = position.coords
+
+                gMap.setCenter({ lat: latitude, lng: longitude })
+                gMap.setZoom(15)
+            },
+
+            (err) => {
+                console.error('Error getting user location', err)
+                alert('Could not get your location')
+            }
+        )
+    } else {
+        console.error('Geolocation is not supported by this browser')
+        alert('Your browser does not support Geolocation')
+    }
+}
+
+
 function onPanToPlace(placeId) {
     const place = placeService.getPlaceById(placeId)
     gMap.setCenter({ lat: place.lat, lng: place.lng })
