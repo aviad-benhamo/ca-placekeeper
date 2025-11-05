@@ -43,9 +43,11 @@ function renderPlaces() {
     const strHtmls = places.map(place => {
         return `
         <li>
-            ${place.name}
-            <button class="btn-delete" onclick="onRemovePlace('${place.id}')">x</button>
-            <button class="btn-go" onclick="onPanToPlace('${place.id}')">Go</button>
+            <span class="place-name">${place.name}</span>
+            <div class="place-buttons">
+                <button class="btn-delete" onclick="onRemovePlace('${place.id}')">x</button>
+                <button class="btn-go" onclick="onPanToPlace('${place.id}')">Go</button>
+            </div>
         </li>
         `
     })
@@ -113,4 +115,23 @@ function onPanToPlace(placeId) {
 function _clearMarkers() {
     gMarkers.forEach(marker => marker.setMap(null))
     gMarkers = []
+}
+
+
+function onDownloadCSV(elLink) {
+    const places = placeService.getPlaces()
+    if (!places || !places.length) {
+        alert('No places to download')
+        return
+    }
+
+    const headers = 'Name,Latitude,Longitude,Zoom\n'
+
+    const csvRows = places.map(place =>
+        `${place.name},${place.lat},${place.lng},${place.zoom}`
+    ).join('\n')
+
+    const csvContent = headers + csvRows
+
+    elLink.href = 'data:text/csv;charset=utf-8,' + csvContent
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map</title>
-
+    <link rel="stylesheet" href="css/main.css">
     <style>
         .map-container {
             width: 100%;
@@ -16,7 +16,7 @@
 </head>
 
 <body onload="onInit()">
-    <h1 style="background-color: red;">Map</h1>
+    <h1>Map</h1>
     <nav>
         <a href="index.html">Home Page</a>
         <a href="user-prefs.html">Settings</a>
@@ -27,6 +27,7 @@
         <ul class="places-list">
             <li>Loading...</li>
         </ul>
+        <a onclick="onDownloadCSV(this)" download="my-places.csv">Download as CSV</a>
     </section>
 
     <div class="map-container">
