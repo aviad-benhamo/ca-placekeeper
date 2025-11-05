@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+
+</head>
+
+<body>
+    <h1 style="background-color: blue;">Settings</h1>
+    <nav>
+        <a href="index.html">Home Page</a>
+        <a href="map.html">Map</a>
+    </nav>
+
+    <form id="frmRegister" onsubmit="onSubmit(event)">
+        <table>
+            <tr>
+                <td><label for="email">E-mail:</label></td>
+                <td><input placeholder="Insert eMail here" required type="email" name="email" /></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td>
+                    <input type="range" id="age" name="age" min="18" max="120" value="26"
+                        oninput="showAge(this.value); this.title = this.value" />
+                    <span id="sAge">26</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="bgColor">Set Background Color:</label></td>
+                <td><input type="color" id="bgColor" name="bgColor" /></td>
+            </tr>
+            <tr>
+                <td><label for="txtColor">Set Text Color:</label></td>
+                <td><input type="color" id="txtColor" name="txtColor" /></td>
+            </tr>
+            <tr>
+                <td><label for="dob">Date of Birth:</label></td>
+                <td><input type="date" value="1989-03-28" id="dob" name="dob" /></td>
+            </tr>
+            <tr>
+                <td><label for="time">Birth Time:</label></td>
+                <td><input type="time" value="22:30" id="time" name="time" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button>Set</button></td>
+            </tr>
+        </table>
+    </form>
+
+    <script src="js/utilService.js"></script>
+    <script src="js/userService.js"></script>
+    <script src="js/user-prefs.controller.js"></script>
+</body>
+
+</html>
