@@ -1,6 +1,7 @@
 'use strict'
 
 var gMap
+var gMarkers = []
 
 function onInit() {
     const userPrefs = userService.load()
@@ -9,14 +10,14 @@ function onInit() {
         document.body.style.color = userPrefs.txtColor
     }
 
-    renderPlaces()
 }
 
 function initMap() {
     const elatCoords = { lat: 29.5581, lng: 34.9482 }
     const mapOptions = {
         center: elatCoords,
-        zoom: 12
+        zoom: 12,
+        mapId: 'DEMO_MAP_ID'
     }
     const elMap = document.querySelector('.map-container')
     gMap = new google.maps.Map(elMap, mapOptions)
@@ -33,6 +34,7 @@ function initMap() {
         renderPlaces()
         gMap.setCenter({ lat, lng })
     })
+    renderPlaces()
 }
 
 function renderPlaces() {
@@ -49,6 +51,19 @@ function renderPlaces() {
     })
 
     document.querySelector('.places-list').innerHTML = strHtmls.join('')
+
+    if (!gMap) return
+
+    _clearMarkers()
+
+    gMarkers = places.map(place => {
+        return new google.maps.marker.AdvancedMarkerElement({
+            position: { lat: place.lat, lng: place.lng },
+            map: gMap,
+            title: place.name
+        })
+    })
+
 }
 
 function onRemovePlace(placeId) {
@@ -93,4 +108,9 @@ function onPanToPlace(placeId) {
     const place = placeService.getPlaceById(placeId)
     gMap.setCenter({ lat: place.lat, lng: place.lng })
     gMap.setZoom(place.zoom)
+}
+
+function _clearMarkers() {
+    gMarkers.forEach(marker => marker.setMap(null))
+    gMarkers = []
 }
