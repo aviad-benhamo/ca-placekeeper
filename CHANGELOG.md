@@ -10,6 +10,8 @@ This project follows Semantic Versioning.
 
 - Added the baseline GRS repository files for documentation, security,
   licensing, editor consistency, and release history.
+- Added sanitized repository-managed screenshots for the home page, settings
+  page, and safe map fallback state under `docs/screenshots/`.
 
 ### Changed
 
@@ -21,3 +23,5 @@ This project follows Semantic Versioning.
   committed-key safety scan, and documented manual QA guidance.
 - Added a minimal GitHub Actions workflow that runs the existing automated
   validation bundle on `main` pushes and pull requests.
+- Updated `README.md` to embed the new screenshots and explain the safe
+  missing-key map screenshot state.
