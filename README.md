@@ -19,9 +19,10 @@ data in the browser, and jump between saved places on a Google Map.
 The current project is intentionally simple:
 
 - no backend service
-- no package manager or build pipeline
+- no application build pipeline
 - no automated test suite
 - browser persistence through `localStorage`
+- lightweight local Node tooling only for static serving
 
 ## Features
 
@@ -46,20 +47,35 @@ note that the Google Maps configuration requirements still apply.
 ## Quick Start
 
 1. Clone the repository.
-2. Copy `js/maps-config.example.js` to `js/maps-config.js`.
-3. Replace `YOUR_GOOGLE_MAPS_API_KEY` with a restricted Google Maps browser
+2. Install the recommended Node.js version from `.nvmrc`, or use a compatible
+   Node 24 release.
+3. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+4. Copy `js/maps-config.example.js` to `js/maps-config.js`.
+5. Replace `YOUR_GOOGLE_MAPS_API_KEY` with a restricted Google Maps browser
    key.
-4. Start a local static server from the repository root, for example:
+6. Start the local static server:
+
+   ```sh
+   npm run serve
+   ```
+
+7. Open `http://localhost:8000/index.html` in a browser.
+
+Python remains a valid fallback for environments that do not want Node-based
+tooling:
 
    ```sh
    python -m http.server 8000
    ```
 
-5. Open `http://localhost:8000/index.html` in a browser.
-
 You can also open `index.html` directly from the filesystem for basic flows,
 but a local static server is the safer default for manual QA and future asset
-loading changes.
+loading changes. The recommended repository workflow is the local static server.
 
 ## Configuration
 
@@ -83,6 +99,8 @@ If the key is missing or still set to the placeholder value, `map.html` shows a
 configuration message instead of loading Google Maps.
 
 For more detail, see [docs/maps-configuration.md](docs/maps-configuration.md).
+For the local run workflow, see
+[docs/local-development.md](docs/local-development.md).
 
 ## Project Structure
 
@@ -109,11 +127,22 @@ For more detail, see [docs/maps-configuration.md](docs/maps-configuration.md).
 
 - The app uses plain browser globals and script tags rather than modules or a
   bundler.
+- `package.json` exists only to provide a consistent local static server
+  workflow for contributors.
 - User preferences are stored under the `userPrefsDB` local storage key.
 - Saved places are stored under the `placeDB` local storage key.
 - Initial sample places are seeded when no places exist in local storage.
 - The map page loads the Google Maps script dynamically after validating the
   configured API key.
+
+## Browser Assumptions And Limitations
+
+- Use a modern desktop browser with JavaScript enabled.
+- `localStorage` is required for persistent places and user preferences.
+- Google Maps requires network access plus a valid browser API key.
+- Geolocation is optional and depends on browser support and user permission.
+- Location testing is more reliable on `http://localhost` than on direct
+  `file://` pages.
 
 ## Manual QA
 
@@ -125,15 +154,16 @@ Recommended checks:
 1. Open `index.html` and verify the navigation links to Settings and Map.
 2. Open `user-prefs.html`, save preferences, and confirm the selected colors
    apply after reloading pages.
-3. Open `map.html` without `js/maps-config.js` and confirm the configuration
+3. Run `npm run serve` and verify `http://localhost:8000/index.html` loads.
+4. Open `map.html` without `js/maps-config.js` and confirm the configuration
    warning appears.
-4. Add a valid `js/maps-config.js`, reload `map.html`, and confirm the map
+5. Add a valid `js/maps-config.js`, reload `map.html`, and confirm the map
    initializes.
-5. Click the map to add a place, then verify `Go`, delete, and CSV download
+6. Click the map to add a place, then verify `Go`, delete, and CSV download
    behavior.
-6. Trigger `My Location` in a browser that supports geolocation and confirm the
+7. Trigger `My Location` in a browser that supports geolocation and confirm the
    map recenters after permission is granted.
-7. Search the repository for committed Google Maps keys before publishing:
+8. Search the repository for committed Google Maps keys before publishing:
 
    ```sh
    rg "AIza[0-9A-Za-z_-]+" .

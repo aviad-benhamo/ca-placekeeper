@@ -1,0 +1,13 @@
+{
+  "name": "ca-placekeeper",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Static local development workflow for the PlaceKeeper Coding Academy project.",
+  "scripts": {
+    "serve": "http-server . -p 8000 -c-1 -o /index.html",
+    "serve:quiet": "http-server . -p 8000 -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

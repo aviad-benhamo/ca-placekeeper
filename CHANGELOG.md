@@ -15,3 +15,5 @@ This project follows Semantic Versioning.
 
 - Expanded `README.md` with GRS-compliant project, setup, configuration,
   manual QA, and release-status guidance for PlaceKeeper.
+- Documented the local setup and configuration workflow, and added lightweight
+  Node-based static-server tooling for reproducible local runs.

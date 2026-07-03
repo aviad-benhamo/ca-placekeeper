@@ -4,10 +4,23 @@ PlaceKeeper uses the Google Maps JavaScript API. Do not commit real Google Maps 
 
 ## Local setup
 
-1. Copy `js/maps-config.example.js` to `js/maps-config.js`.
-2. Replace `YOUR_GOOGLE_MAPS_API_KEY` with a Google Maps browser key.
-3. Keep `js/maps-config.js` local. It is ignored by Git.
-4. Open `map.html` through the project's usual static workflow.
+1. Install dependencies with `npm install`, or decide to use the documented
+   Python fallback static server instead.
+2. Copy `js/maps-config.example.js` to `js/maps-config.js`.
+3. Replace `YOUR_GOOGLE_MAPS_API_KEY` with a Google Maps browser key.
+4. Keep `js/maps-config.js` local. It is ignored by Git.
+5. Open `map.html` through the project's local static server workflow.
+
+The recommended local workflow is:
+
+```sh
+npm run serve
+```
+
+Then open `http://localhost:8000/map.html`.
+
+For the broader setup and browser workflow, see
+[local-development.md](local-development.md).
 
 ## Google Cloud requirements
 
