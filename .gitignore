@@ -1,1 +1,28 @@
+# Local Google Maps API configuration
 /js/maps-config.js
+
+# Dependency and build output directories
+node_modules/
+dist/
+build/
+coverage/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor and local tooling files
+.vscode/
+.idea/
