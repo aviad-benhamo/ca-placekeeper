@@ -10,6 +10,7 @@ function onInit() {
         document.body.style.color = userPrefs.txtColor
     }
 
+    _loadGoogleMaps()
 }
 
 function initMap() {
@@ -115,6 +116,22 @@ function onPanToPlace(placeId) {
 function _clearMarkers() {
     gMarkers.forEach(marker => marker.setMap(null))
     gMarkers = []
+}
+
+function _loadGoogleMaps() {
+    const apiKey = window.PLACEKEEPER_MAPS_API_KEY
+    if (!apiKey || apiKey === 'YOUR_GOOGLE_MAPS_API_KEY') {
+        const elMap = document.querySelector('.map-container')
+        elMap.innerText = 'Google Maps API key is not configured.'
+        console.error('Missing Google Maps API key. Copy js/maps-config.example.js to js/maps-config.js and set a restricted key.')
+        return
+    }
+
+    const elScript = document.createElement('script')
+    elScript.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&callback=initMap&libraries=marker`
+    elScript.async = true
+    elScript.defer = true
+    document.head.appendChild(elScript)
 }
 
 

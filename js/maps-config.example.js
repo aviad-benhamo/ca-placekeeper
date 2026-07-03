@@ -1,0 +1,3 @@
+'use strict'
+
+window.PLACEKEEPER_MAPS_API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'
