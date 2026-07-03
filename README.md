@@ -54,8 +54,15 @@ The map screenshot intentionally captures the safe missing-key fallback state.
 This keeps the repository free of live API-backed map data, personal browser
 state, and sensitive location details.
 
-If a hosted demo is published later, add the public URL here together with a
-note that the Google Maps configuration requirements still apply.
+No live GitHub Pages demo is published yet.
+
+GitHub Pages is intentionally deferred for now because the repository still
+needs an explicit repository-settings pass for About metadata, Topics, Pages,
+and Homepage configuration before first-release readiness is evaluated.
+
+If a hosted demo is published later, use a repository settings change to point
+Homepage to the Pages URL, and document clearly that the deployed map view must
+not expose a real Google Maps API key or unsafe browser state.
 
 ## Quick Start
 

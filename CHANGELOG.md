@@ -36,3 +36,6 @@ documentation, and repository-baseline blockers are resolved.
   validation bundle on `main` pushes and pull requests.
 - Updated `README.md` to embed the new screenshots and explain the safe
   missing-key map screenshot state.
+- Documented that a public GitHub Pages demo is intentionally deferred until a
+  dedicated repository-settings pass can safely configure About metadata,
+  Topics, Pages, and Homepage values.
