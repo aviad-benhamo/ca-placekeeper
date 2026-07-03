@@ -10,3 +10,8 @@ This project follows Semantic Versioning.
 
 - Added the baseline GRS repository files for documentation, security,
   licensing, editor consistency, and release history.
+
+### Changed
+
+- Expanded `README.md` with GRS-compliant project, setup, configuration,
+  manual QA, and release-status guidance for PlaceKeeper.
