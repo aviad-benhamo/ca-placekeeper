@@ -38,3 +38,5 @@ documentation, and repository-baseline blockers are resolved.
   missing-key map screenshot state.
 - Updated the repository documentation to reflect the live GitHub Pages demo
   and the safe deployed missing-key fallback behavior for `map.html`.
+- Redacted detected secret values from the committed-key validation output so
+  failures report only file location and reason.

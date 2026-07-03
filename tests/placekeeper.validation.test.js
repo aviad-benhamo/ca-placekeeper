@@ -2,6 +2,9 @@ const test = require('node:test')
 const assert = require('node:assert/strict')
 const fs = require('node:fs')
 const path = require('node:path')
+const os = require('node:os')
+const { pathToFileURL } = require('node:url')
+const { spawnSync } = require('node:child_process')
 const vm = require('node:vm')
 
 function createLocalStorage() {
@@ -181,4 +184,54 @@ test('map controller exports CSV data when places exist', () => {
     link.href.startsWith('data:text/csv;charset=utf-8,Name,Latitude,Longitude,Zoom\nSydney')
   )
   assert.ok(link.href.includes('Florentin,32.0558,34.7709,15'))
+})
+
+test('secret scan reports file, line, and reason without leaking the detected value', async () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ca-placekeeper-secret-scan-'))
+  const tempFile = path.join(tempDir, 'maps-config.js')
+  const leakedSecret = 'AIza1234567890abcdefghijk'
+  fs.writeFileSync(
+    tempFile,
+    `export const key = '${leakedSecret}'\nexport const placeholder = 'YOUR_GOOGLE_MAPS_API_KEY'\n`,
+    'utf8'
+  )
+
+  const scriptModule = await import(
+    pathToFileURL(path.join(__dirname, '..', 'scripts', 'check-no-real-api-key.mjs')).href
+  )
+  const violations = await scriptModule.scanFilesForCommittedKeys([tempFile])
+
+  assert.equal(violations.length, 1)
+  assert.equal(violations[0].relativePath, tempFile)
+  assert.equal(violations[0].lineNumber, 1)
+  assert.match(violations[0].reason, /Potential committed Google Maps API key candidate/)
+
+  const formattedViolation = scriptModule.formatViolation(violations[0])
+  assert.match(formattedViolation, /maps-config\.js:1/)
+  assert.match(formattedViolation, /Potential committed Google Maps API key candidate/)
+  assert.doesNotMatch(formattedViolation, new RegExp(leakedSecret))
+
+  const commandResult = spawnSync(
+    process.execPath,
+    ['-e', `
+      import { formatViolation } from ${JSON.stringify(
+        pathToFileURL(path.join(__dirname, '..', 'scripts', 'check-no-real-api-key.mjs')).href
+      )};
+      const violation = {
+        relativePath: 'js/maps-config.js',
+        lineNumber: 7,
+        reason: 'Potential committed Google Maps API key candidate'
+      };
+      console.error(formatViolation(violation));
+    `],
+    { encoding: 'utf8' }
+  )
+
+  assert.equal(commandResult.status, 0)
+  assert.equal(commandResult.stdout, '')
+  assert.match(commandResult.stderr, /js\/maps-config\.js:7/)
+  assert.match(commandResult.stderr, /Potential committed Google Maps API key candidate/)
+  assert.doesNotMatch(commandResult.stderr, new RegExp(leakedSecret))
+
+  fs.rmSync(tempDir, { recursive: true, force: true })
 })
