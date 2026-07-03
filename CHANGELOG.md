@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 
 This project follows Semantic Versioning.
 
+The repository currently targets `0.1.0` as its initial release baseline while
+the project remains experimental.
+
+Keep all pending changes under `[Unreleased]` until a deliberate
+release-preparation step moves them into a numbered version section.
+
+Every release must use a Git tag in the format `vMAJOR.MINOR.PATCH`.
+
+Do not publish a public or stable release until the remaining security,
+documentation, and repository-baseline blockers are resolved.
+
 ## [Unreleased]
 
 ### Added

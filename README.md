@@ -218,9 +218,17 @@ release, or publication.
 
 See [CHANGELOG.md](CHANGELOG.md) for pending and released repository changes.
 
-No release tag or public release process is documented for this repository yet.
-Keep the project under `[Unreleased]` until a deliberate release-preparation
-step is completed.
+The repository currently uses `0.1.0` as its initial versioning baseline while
+the project is still experimental.
+
+Keep all pending work under `[Unreleased]` until a deliberate release
+preparation step moves the validated changes into a numbered section such as
+`[0.1.0]`.
+
+Every release must use a Git tag in the format `vMAJOR.MINOR.PATCH`.
+
+Do not create a public or stable release until the remaining security and
+repository-baseline blockers are resolved.
 
 ## License
 
