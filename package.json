@@ -5,7 +5,10 @@
   "description": "Static local development workflow for the PlaceKeeper Coding Academy project.",
   "scripts": {
     "serve": "http-server . -p 8000 -c-1 -o /index.html",
-    "serve:quiet": "http-server . -p 8000 -c-1"
+    "serve:quiet": "http-server . -p 8000 -c-1",
+    "test": "node --test tests/*.test.js",
+    "check:secrets": "node scripts/check-no-real-api-key.mjs",
+    "validate": "npm run test && npm run check:secrets"
   },
   "devDependencies": {
     "http-server": "^14.1.1"

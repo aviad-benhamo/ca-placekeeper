@@ -20,7 +20,7 @@ The current project is intentionally simple:
 
 - no backend service
 - no application build pipeline
-- no automated test suite
+- lightweight automated validation plus manual browser QA
 - browser persistence through `localStorage`
 - lightweight local Node tooling only for static serving
 
@@ -101,6 +101,8 @@ configuration message instead of loading Google Maps.
 For more detail, see [docs/maps-configuration.md](docs/maps-configuration.md).
 For the local run workflow, see
 [docs/local-development.md](docs/local-development.md).
+For the validation workflow, see
+[docs/validation-workflow.md](docs/validation-workflow.md).
 
 ## Project Structure
 
@@ -146,8 +148,13 @@ For the local run workflow, see
 
 ## Manual QA
 
-There is no automated test suite in the current experimental state, so
-validation is manual.
+PlaceKeeper uses a hybrid validation workflow:
+
+- automated baseline checks with `npm run validate`
+- manual browser QA for interactive map behavior
+
+The full workflow is documented in
+[docs/validation-workflow.md](docs/validation-workflow.md).
 
 Recommended checks:
 
@@ -168,6 +175,17 @@ Recommended checks:
    ```sh
    rg "AIza[0-9A-Za-z_-]+" .
    ```
+
+## Validation Command
+
+Run this before considering a task complete:
+
+```sh
+npm run validate
+```
+
+This covers the lightweight automated regression checks for local persistence,
+CSV export, missing-key fallback behavior, and committed-key scanning.
 
 ## AI Notice
 

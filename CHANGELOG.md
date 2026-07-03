@@ -17,3 +17,5 @@ This project follows Semantic Versioning.
   manual QA, and release-status guidance for PlaceKeeper.
 - Documented the local setup and configuration workflow, and added lightweight
   Node-based static-server tooling for reproducible local runs.
+- Added a lightweight validation workflow with automated Node checks, a
+  committed-key safety scan, and documented manual QA guidance.
