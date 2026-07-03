@@ -36,19 +36,19 @@ The current project is intentionally simple:
 
 ## Screenshots Or Demo
 
-Repository-managed screenshots are available under `docs/screenshots/`.
+Repository-managed screenshots are available under `assets/screenshots/`.
 
 ### Home Page
 
-![PlaceKeeper home page screenshot](docs/screenshots/placekeeper-home.png)
+![PlaceKeeper home page screenshot](assets/screenshots/placekeeper-home.png)
 
 ### Settings Page
 
-![PlaceKeeper settings page screenshot](docs/screenshots/placekeeper-settings.png)
+![PlaceKeeper settings page screenshot](assets/screenshots/placekeeper-settings.png)
 
 ### Map Page
 
-![PlaceKeeper map page screenshot](docs/screenshots/placekeeper-map.png)
+![PlaceKeeper map page screenshot](assets/screenshots/placekeeper-map.png)
 
 The map screenshot intentionally captures the safe missing-key fallback state.
 This keeps the repository free of live API-backed map data, personal browser
@@ -131,12 +131,15 @@ The repository also runs the same automated validation bundle in GitHub Actions.
 .
 |-- css/
 |   `-- main.css
-|-- docs/
-|   |-- maps-configuration.md
+|-- assets/
 |   `-- screenshots/
 |       |-- placekeeper-home.png
 |       |-- placekeeper-map.png
 |       `-- placekeeper-settings.png
+|-- docs/
+|   |-- local-development.md
+|   |-- maps-configuration.md
+|   `-- validation-workflow.md
 |-- js/
 |   |-- maps-config.example.js
 |   |-- map.controller.js

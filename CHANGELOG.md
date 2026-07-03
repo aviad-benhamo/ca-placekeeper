@@ -22,7 +22,7 @@ documentation, and repository-baseline blockers are resolved.
 - Added the baseline GRS repository files for documentation, security,
   licensing, editor consistency, and release history.
 - Added sanitized repository-managed screenshots for the home page, settings
-  page, and safe map fallback state under `docs/screenshots/`.
+  page, and safe map fallback state under `assets/screenshots/`.
 
 ### Changed
 
@@ -40,3 +40,5 @@ documentation, and repository-baseline blockers are resolved.
   and the safe deployed missing-key fallback behavior for `map.html`.
 - Redacted detected secret values from the committed-key validation output so
   failures report only file location and reason.
+- Moved repository-managed screenshots to `assets/screenshots/` to align the
+  media layout with GRS.
