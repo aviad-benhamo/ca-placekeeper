@@ -23,6 +23,7 @@ This repository follows the GitHub Repository Standard (GRS). Use the GRS as the
 ## GitHub Workflow
 
 - For GitHub issues, comments, pull requests, labels, and repository metadata, use the connected GitHub connector/plugin first.
+- Prefer `mcp__codex_apps__github` as the default path. Do not infer that a resource is missing from `Not Found` errors returned by other GitHub MCP tools, and read back important issue comments after writing them when practical.
 - Do not use public GitHub web browsing to access private repository issues or metadata.
 - Do not repeatedly try public web access when the connector is available.
 - Do not treat public GitHub browsing failures as evidence that a repository, issue, or PR is missing.
