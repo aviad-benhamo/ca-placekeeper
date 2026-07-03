@@ -103,6 +103,7 @@ For the local run workflow, see
 [docs/local-development.md](docs/local-development.md).
 For the validation workflow, see
 [docs/validation-workflow.md](docs/validation-workflow.md).
+The repository also runs the same automated validation bundle in GitHub Actions.
 
 ## Project Structure
 
@@ -186,6 +187,9 @@ npm run validate
 
 This covers the lightweight automated regression checks for local persistence,
 CSV export, missing-key fallback behavior, and committed-key scanning.
+
+GitHub Actions runs the same validation command on pushes to `main` and on pull
+requests.
 
 ## AI Notice
 

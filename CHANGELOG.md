@@ -19,3 +19,5 @@ This project follows Semantic Versioning.
   Node-based static-server tooling for reproducible local runs.
 - Added a lightweight validation workflow with automated Node checks, a
   committed-key safety scan, and documented manual QA guidance.
+- Added a minimal GitHub Actions workflow that runs the existing automated
+  validation bundle on `main` pushes and pull requests.

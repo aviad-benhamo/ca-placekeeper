@@ -27,6 +27,19 @@ This command currently covers:
 - `npm run check:secrets`
   - scans tracked app files for committed Google Maps API key candidates
 
+## CI alignment
+
+GitHub Actions runs the same automated validation bundle with:
+
+```sh
+npm ci
+npm run validate
+```
+
+CI is intentionally minimal. It mirrors the local automated workflow and does
+not attempt to replace the manual browser QA checklist for live Google Maps and
+geolocation behavior.
+
 ## Manual QA
 
 Automated checks do not replace browser verification for the full map flow.
